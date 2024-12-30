@@ -43,4 +43,11 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-  
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'storage-sc'
+    appType: 'webApp'
+    appName: 'wpmappservice'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
+    slotName: 'dev'
